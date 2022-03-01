@@ -16,12 +16,13 @@ class MoviesOverviewViewModel(private val service: MoviesService) : ViewModel() 
 
   private val _movies = MutableLiveData<Resource<PopularMoviesResponse>>()
   val movies: LiveData<Resource<PopularMoviesResponse>> = _movies
+  private var page = 1
 
   /**
    * Retrieves the list of popular movies.
    */
   fun getMovies() = viewModelScope.launch {
     _movies.value = Resource.loading()
-    _movies.postValue(service.getPopularMovies(1))
+    _movies.postValue(service.getPopularMovies(page++))
   }
 }

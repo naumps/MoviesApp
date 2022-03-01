@@ -1,11 +1,12 @@
 package com.example.moviesapp.ui.overview
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.moviesapp.data.Resource
 import com.example.moviesapp.databinding.FragmentMoviesOverviewBinding
 import com.example.moviesapp.ui.overview.adapter.MoviesOverviewAdapter
@@ -17,7 +18,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class MoviesOverviewFragment : Fragment() {
 
   private var _binding: FragmentMoviesOverviewBinding? = null
-  private val viewModel : MoviesOverviewViewModel by viewModel()
+  private val viewModel: MoviesOverviewViewModel by viewModel()
   private val moviesAdapter = MoviesOverviewAdapter()
 
   private val views get() = _binding!!
@@ -40,6 +41,7 @@ class MoviesOverviewFragment : Fragment() {
     super.onViewCreated(view, savedInstanceState)
     setupViews()
     setupObserver()
+    initListeners()
     viewModel.getMovies()
   }
 
@@ -62,5 +64,15 @@ class MoviesOverviewFragment : Fragment() {
         }
       }
     }
+  }
+
+  private fun initListeners() {
+    views.moviesList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+      override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+        if (!recyclerView.canScrollVertically(1) && dy > 0) {
+          viewModel.getMovies()
+        }
+      }
+    })
   }
 }
