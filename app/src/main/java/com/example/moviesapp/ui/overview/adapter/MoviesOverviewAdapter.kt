@@ -4,14 +4,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moviesapp.databinding.MovieListItemBinding
-import com.example.moviesapp.network.RestClient.IMAGE_URL
 import com.example.moviesapp.network.model.MovieModel
+import com.example.moviesapp.network.utils.RestClient.IMAGE_URL
 import com.example.moviesapp.utils.loadImage
 
 /**
  * [RecyclerView.Adapter] used for displaying movie items.
  */
-class MoviesOverviewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MoviesOverviewAdapter(private val listener: (MovieModel) -> Unit) :
+  RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
   private val movies = ArrayList<MovieModel>()
 
@@ -47,6 +48,7 @@ class MoviesOverviewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     fun bind(movieModel: MovieModel) {
       views.movie = movieModel
       views.icon.loadImage(IMAGE_URL + movieModel.imagePath, 0, true)
+      itemView.setOnClickListener { listener.invoke(movieModel) }
     }
   }
 }

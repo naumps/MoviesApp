@@ -4,9 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.moviesapp.R
 import com.example.moviesapp.data.Resource
 import com.example.moviesapp.databinding.FragmentMoviesOverviewBinding
 import com.example.moviesapp.ui.overview.adapter.MoviesOverviewAdapter
@@ -19,7 +23,9 @@ class MoviesOverviewFragment : Fragment() {
 
   private var _binding: FragmentMoviesOverviewBinding? = null
   private val viewModel: MoviesOverviewViewModel by viewModel()
-  private val moviesAdapter = MoviesOverviewAdapter()
+  private val moviesAdapter = MoviesOverviewAdapter{
+    findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment, bundleOf("movieId" to it.id))
+  }
 
   private val views get() = _binding!!
 
@@ -61,6 +67,11 @@ class MoviesOverviewFragment : Fragment() {
         Resource.State.SUCCESS -> {
           it.data?.results?.let { movies -> moviesAdapter.setItems(movies) }
           views.progressBar.visibility = View.GONE
+        }
+        Resource.State.ERROR, Resource.State.EXCEPTION -> {
+          views.progressBar.visibility = View.GONE
+          Toast.makeText(requireContext(),"Something went wrong, please try again :(" , Toast.LENGTH_SHORT).show()
+          //TODO: Create a generic error/exception handler.
         }
       }
     }

@@ -5,20 +5,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
-import com.example.moviesapp.R
 import com.example.moviesapp.databinding.FragmentMovieDetailsBinding
+import org.koin.android.viewmodel.ext.android.viewModel
 
 /**
- * A simple [Fragment] subclass as the second destination in the navigation.
+ * Fragment used for displaying movie details.
  */
 class MovieDetailsFragment : Fragment() {
 
   private var _binding: FragmentMovieDetailsBinding? = null
 
-  // This property is only valid between onCreateView and
-  // onDestroyView.
-  private val binding get() = _binding!!
+  private val views get() = _binding!!
+  private val viewModel: MovieDetailsViewModel by viewModel()
+
 
   override fun onCreateView(
     inflater: LayoutInflater, container: ViewGroup?,
@@ -26,14 +25,15 @@ class MovieDetailsFragment : Fragment() {
   ): View {
 
     _binding = FragmentMovieDetailsBinding.inflate(inflater, container, false)
-    return binding.root
+    return views.root
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
+    val id = arguments?.getInt("movieId")
+    viewModel.getMovieDetails(id?:0)
+    viewModel.movie.observe(viewLifecycleOwner) {
 
-    binding.buttonSecond.setOnClickListener {
-      findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
     }
   }
 
