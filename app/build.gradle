@@ -27,6 +27,9 @@ android {
       minifyEnabled false
       proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
     }
+    buildTypes.each {
+      it.buildConfigField 'String', 'MOVIE_DB_API_KEY', AppKey
+    }
   }
   compileOptions {
     sourceCompatibility JavaVersion.VERSION_1_8

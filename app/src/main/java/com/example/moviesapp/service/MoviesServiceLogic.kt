@@ -1,5 +1,6 @@
 package com.example.moviesapp.service
 
+import com.example.moviesapp.BuildConfig
 import com.example.moviesapp.data.Resource
 import com.example.moviesapp.data.toResource
 import com.example.moviesapp.network.MoviesRestApi
@@ -10,7 +11,7 @@ class MoviesServiceLogic(private val api: MoviesRestApi): MoviesService {
 
   override suspend fun getPopularMovies(page:Int): Resource<PopularMoviesResponse> {
     val response = managedApiCall {
-      api.getPopularMovies("0fc7527c43e353e4d4c479d9deb732c1",page)
+      api.getPopularMovies(BuildConfig.MOVIE_DB_API_KEY,page)
     }
     return response.toResource()
   }
