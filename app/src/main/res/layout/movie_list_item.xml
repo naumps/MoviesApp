@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools">
+
+  <data>
+
+    <import type="android.view.View" />
+
+    <variable
+      name="movie"
+      type="com.example.moviesapp.network.model.MovieModel" />
+  </data>
+
+  <LinearLayout
+    android:id="@+id/itemLayoutContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:padding="12dp">
+
+      <ImageView
+        android:id="@+id/icon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/infoContainer"/>
+
+      <LinearLayout
+        android:id="@+id/infoContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/icon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/rating">
+
+        <TextView
+          android:id="@+id/title"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@{movie.originalTitle}"
+          tools:text="Movie title" />
+
+        <TextView
+          android:id="@+id/releaseDate"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@{movie.releaseDate}"
+          tools:text="03.07.1996" />
+      </LinearLayout>
+
+      <TextView
+        android:id="@+id/rating"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:paddingEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/infoContainer"
+        android:text="@{String.valueOf(movie.rating)}"
+        android:ellipsize="end"
+        android:textAlignment="textEnd"
+        tools:text="8.3" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+      android:id="@+id/menuItemDefaultDivider"
+      android:layout_marginStart="16dp"
+      android:layout_width="match_parent"
+      android:layout_height="1dp" />
+
+  </LinearLayout>
+</layout>
