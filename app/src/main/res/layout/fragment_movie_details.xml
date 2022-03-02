@@ -3,15 +3,72 @@
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools">
 
+  <data>
+    <variable
+      name="movie"
+      type="com.example.moviesapp.network.model.MovieModel" />
+  </data>
   <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SecondFragment">
 
+    <ImageView
+      android:id="@+id/imageView"
+      android:layout_width="@dimen/movie_image_size"
+      android:layout_height="@dimen/movie_image_size"
+      android:layout_marginTop="@dimen/margin_16"
+
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      tools:srcCompat="@tools:sample/avatars" />
+
     <TextView
-      android:id="@+id/textview_second"
+      android:id="@+id/title"
+      style="@style/Text.XL.Reg"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:layout_marginTop="@dimen/movie_title_top_margin"
+      android:text="@{movie.originalTitle}"
+      app:layout_constraintEnd_toEndOf="@+id/imageView"
+      app:layout_constraintHorizontal_bias="0.492"
+      app:layout_constraintStart_toStartOf="@+id/imageView"
+      app:layout_constraintTop_toBottomOf="@+id/imageView"
+      tools:text="Title" />
+
+    <TextView
+      android:id="@+id/description"
+      style="@style/Text.M.Med"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="@dimen/margin_16"
+      android:paddingHorizontal="@dimen/margin_16"
+      android:text="@{movie.overview}"
+      android:textAlignment="center"
+      app:layout_constraintEnd_toEndOf="@+id/title"
+      app:layout_constraintStart_toStartOf="@+id/title"
+      app:layout_constraintTop_toBottomOf="@+id/title"
+      tools:text="Description" />
+
+    <TextView
+      android:id="@+id/releaseDate"
+      style="@style/Text.M.Med"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="@dimen/margin_16"
+      android:text="@{movie.releaseDate}"
+      app:layout_constraintEnd_toEndOf="@+id/description"
+      app:layout_constraintStart_toStartOf="@+id/description"
+      app:layout_constraintTop_toBottomOf="@+id/description" />
+
+    <ProgressBar
+      android:id="@+id/progressBar"
+      style="?android:attr/progressBarStyle"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:visibility="gone"
+      app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent" />

@@ -22,13 +22,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:padding="12dp">
+      android:padding="@dimen/margin_16">
 
       <ImageView
         android:id="@+id/icon"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginHorizontal="16dp"
+        android:layout_width="@dimen/movie_item_image_size"
+        android:layout_height="@dimen/movie_item_image_size"
+        android:layout_marginHorizontal="@dimen/margin_16"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -46,6 +46,7 @@
 
         <TextView
           android:id="@+id/title"
+          style="@style/Text.M.Med"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:text="@{movie.originalTitle}"
@@ -63,8 +64,8 @@
         android:id="@+id/rating"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:paddingEnd="16dp"
+        android:layout_marginStart="@dimen/margin_16"
+        android:paddingEnd="@dimen/margin_16"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -75,12 +76,11 @@
         tools:text="8.3" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
     <View
+      style="@style/DividerHorizontal"
       android:id="@+id/menuItemDefaultDivider"
-      android:layout_marginStart="16dp"
+      android:layout_marginStart="@dimen/margin_16"
       android:layout_width="match_parent"
       android:layout_height="1dp" />
-
   </LinearLayout>
 </layout>

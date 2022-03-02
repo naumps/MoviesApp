@@ -7,4 +7,10 @@
   <string name="next">Next</string>
   <string name="previous">Previous</string>
 
+
+
+
+  <string name="release_date">Release date: %1$s</string>
+
+
 </resources>

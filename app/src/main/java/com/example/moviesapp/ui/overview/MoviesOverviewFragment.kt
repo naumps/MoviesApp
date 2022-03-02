@@ -21,10 +21,15 @@ import org.koin.android.viewmodel.ext.android.viewModel
  */
 class MoviesOverviewFragment : Fragment() {
 
+  companion object {
+    internal const val MOVIE_ID_KEY = "movieId"
+  }
+
   private var _binding: FragmentMoviesOverviewBinding? = null
   private val viewModel: MoviesOverviewViewModel by viewModel()
-  private val moviesAdapter = MoviesOverviewAdapter{
-    findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment, bundleOf("movieId" to it.id))
+  private val moviesAdapter = MoviesOverviewAdapter {
+    findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment,
+      bundleOf(MOVIE_ID_KEY to it.id))
   }
 
   private val views get() = _binding!!
@@ -33,7 +38,6 @@ class MoviesOverviewFragment : Fragment() {
     inflater: LayoutInflater, container: ViewGroup?,
     savedInstanceState: Bundle?,
   ): View {
-
     _binding = FragmentMoviesOverviewBinding.inflate(inflater, container, false)
     return views.root
   }
@@ -70,7 +74,9 @@ class MoviesOverviewFragment : Fragment() {
         }
         Resource.State.ERROR, Resource.State.EXCEPTION -> {
           views.progressBar.visibility = View.GONE
-          Toast.makeText(requireContext(),"Something went wrong, please try again :(" , Toast.LENGTH_SHORT).show()
+          Toast.makeText(requireContext(),
+            "Something went wrong, please try again :(",
+            Toast.LENGTH_SHORT).show()
           //TODO: Create a generic error/exception handler.
         }
       }
