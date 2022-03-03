@@ -31,6 +31,7 @@
       android:layout_height="wrap_content"
       android:layout_marginTop="@dimen/movie_title_top_margin"
       android:text="@{movie.originalTitle}"
+      android:textAlignment="center"
       app:layout_constraintEnd_toEndOf="@+id/imageView"
       app:layout_constraintHorizontal_bias="0.492"
       app:layout_constraintStart_toStartOf="@+id/imageView"
