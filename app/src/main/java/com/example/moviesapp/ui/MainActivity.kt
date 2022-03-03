@@ -7,7 +7,6 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
-import com.example.moviesapp.BuildConfig
 import com.example.moviesapp.R
 import com.example.moviesapp.databinding.ActivityMainBinding
 import com.example.moviesapp.di.moviesModule
