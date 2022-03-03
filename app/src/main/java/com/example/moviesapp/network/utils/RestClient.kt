@@ -7,8 +7,11 @@ import org.koin.java.KoinJavaComponent
 import retrofit2.Retrofit
 import retrofit2.converter.jackson.JacksonConverterFactory
 
+/**
+ *  RestClient for backend communication.
+ */
 object RestClient {
-  internal const val BASE_URL = "https://api.themoviedb.org/"
+  private const val BASE_URL = "https://api.themoviedb.org/"
   internal const val IMAGE_URL = "https://image.tmdb.org/t/p/w200"
 
   private val httpClient: OkHttpClient by KoinJavaComponent.inject(OkHttpClient::class.java)

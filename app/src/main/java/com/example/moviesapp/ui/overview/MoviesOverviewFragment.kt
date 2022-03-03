@@ -75,7 +75,7 @@ class MoviesOverviewFragment : Fragment() {
         Resource.State.ERROR, Resource.State.EXCEPTION -> {
           views.progressBar.visibility = View.GONE
           Toast.makeText(requireContext(),
-            "Something went wrong, please try again :(",
+            getString(R.string.generic_error),
             Toast.LENGTH_SHORT).show()
           //TODO: Create a generic error/exception handler.
         }

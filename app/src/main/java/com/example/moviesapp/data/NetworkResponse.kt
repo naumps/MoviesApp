@@ -1,8 +1,5 @@
 package com.example.moviesapp.data
 
-import com.example.moviesapp.data.Error
-import com.example.moviesapp.data.Resource
-
 /**
  * Class that represents a response coming from a network call.
  */
@@ -27,7 +24,6 @@ sealed class NetworkResponse<out T : Any> {
    * Data class that represents the network exception.
    */
   data class NetworkException(val exception: Exception) : NetworkResponse<Nothing>()
-
 }
 
 /**

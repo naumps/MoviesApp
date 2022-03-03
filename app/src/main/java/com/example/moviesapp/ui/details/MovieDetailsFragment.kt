@@ -23,7 +23,6 @@ class MovieDetailsFragment : Fragment() {
   private val viewModel: MovieDetailsViewModel by viewModel()
   private val views get() = _binding!!
 
-
   override fun onCreateView(
     inflater: LayoutInflater, container: ViewGroup?,
     savedInstanceState: Bundle?,
@@ -63,7 +62,7 @@ class MovieDetailsFragment : Fragment() {
         Resource.State.ERROR, Resource.State.EXCEPTION -> {
           views.progressBar.visibility = View.GONE
           Toast.makeText(requireContext(),
-            "Something went wrong, please try again :(",
+            getString(R.string.generic_error),
             Toast.LENGTH_SHORT).show()
           //TODO: Create a generic error/exception handler.
         }

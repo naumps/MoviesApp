@@ -8,6 +8,9 @@ import com.example.moviesapp.network.model.MovieModel
 import com.example.moviesapp.network.model.PopularMoviesResponse
 import com.example.moviesapp.network.utils.managedApiCall
 
+/**
+ * Implementation of [MoviesService] that uses [MoviesRestApi].
+ */
 class MoviesServiceLogic(private val api: MoviesRestApi): MoviesService {
 
   override suspend fun getPopularMovies(page:Int): Resource<PopularMoviesResponse> {

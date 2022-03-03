@@ -27,7 +27,6 @@ object HttpConfiguration {
       loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
       httpClient.addInterceptor(loggingInterceptor)
     }
-
     return httpClient
   }
 }
